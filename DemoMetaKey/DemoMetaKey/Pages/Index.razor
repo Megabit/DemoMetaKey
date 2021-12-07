@@ -1,0 +1,25 @@
+﻿@page "/"
+
+
+    <button @onclick="OnClick">Please Click With MAC's Control Key pressed</button>
+    <textarea cols="50" rows="10">@_log</textarea>
+    
+@code {
+
+    private string _log;
+    private void OnClick(MouseEventArgs e)
+    {
+        _log = string.Empty;
+        Log(nameof(e.Type), e.Type);
+        Log(nameof(e.AltKey), e.AltKey);
+        Log(nameof(e.CtrlKey), e.CtrlKey);
+        Log(nameof(e.MetaKey), e.MetaKey);
+        Log(nameof(e.ShiftKey), e.ShiftKey);
+    }
+
+    private void Log(string key, bool value)
+        => Log(key, value.ToString());
+
+    private void Log(string key, string value)
+       => _log += $"\r\n{key} : {value}";
+}
